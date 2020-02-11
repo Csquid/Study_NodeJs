@@ -24,23 +24,33 @@
 
         function sendAjax(url, emailData) {
             let data = {'email': emailData };
-            data = JSON.stringify(data);
             let xhr = new XMLHttpRequest();
+            data = JSON.stringify(data);
 
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', "application/json");
             xhr.send(data);
             
             xhr.addEventListener('load', function() {
+                const resultDivElement = document.querySelector(".result");
                 let result = JSON.parse(xhr.responseText);
-                
                 console.log(result);
 
+                if(result.result !== "ok") {
+                    resultDivElement.innerHTML = "your email is not found"
+                } else {
+                    resultDivElement.innerHTML = result.detail.data.name;
+                }
+                /*
                 if(result.result !== "success") {
                     return;
                 }
                     
                 document.querySelector(".result").innerHTML = result.detail.data.email;
+                */
+
+                
+                
             });
         }
     </script>

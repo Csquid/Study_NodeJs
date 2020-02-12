@@ -11,10 +11,12 @@
     <div id="container">
         <img id="node-icon-img" src="/img/nodejs-icon.png">
         <form action="/member/join" method="post" autocomplete="off">
+            
+            <p class="join-preface-title">📌: 무조건 적어야 합니다.</p>
             <!-- id -->
             <div class="join-form-box">
                 <h2 class="join-input-title">
-                    id
+                    ✅ id
                 </h2>
                 <div class="join-input-box">
                     <input type="text" id="join-id" name="id" maxlength="20">
@@ -24,7 +26,7 @@
             <!-- password 1 -->
             <div class="join-form-box ">
                 <h2 class="join-input-title">
-                    Password
+                    📌 Password
                 </h2>
                 <div class="join-input-box">
                     <input type="password" id="join-pw-1" name="pw-1" maxlength="20">
@@ -34,7 +36,7 @@
             <!-- password 2 -->
             <div class="join-form-box">
                 <h2 class="join-input-title">
-                    Password Confirm
+                    📌 Password Confirm
                 </h2>
                 <div class="join-input-box">
                     <input type="password" id="join-pw-2" name="pw-2" maxlength="20">
@@ -50,7 +52,27 @@
                     <input type="text" id="join-name" name="name">
                 </div>
             </div>
-
+            
+            <!-- Email -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Email
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-email" name="email">
+                </div>
+            </div>
+            
+            <!-- address -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Address
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-address" name="address">
+                </div>
+            </div>
+            
             <!-- gender -->
             <div class="join-form-box">
                 <h2 class="join-input-title">
@@ -65,30 +87,10 @@
                 </div>
             </div>
 
-            <!-- Email -->
-            <div class="join-form-box">
-                <h2 class="join-input-title">
-                    Email
-                </h2>
-                <div class="join-input-box">
-                    <input type="text" id="join-email" name="email">
-                </div>
-            </div>
-
-            <!-- address -->
-            <div class="join-form-box">
-                <h2 class="join-input-title">
-                    Address
-                </h2>
-                <div class="join-input-box">
-                    <input type="text" id="join-address" name="address">
-                </div>
-            </div>
-
             <!-- join-button -->
             <div id="join-button-box">
                 <!-- Sign up -->
-                <button type="button" class="join-button" id="join-button-submit"> Sign Up </button>
+                <button type="submit" class="join-button" id="join-button-submit"> Sign Up </button>
                 <!-- Cancle -->
                 <button type="button" class="join-button" id="join-button-cancle"> Cancle </button>
             </div>

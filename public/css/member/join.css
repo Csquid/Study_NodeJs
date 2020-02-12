@@ -12,17 +12,21 @@ html, body {
     width: 100%;
     margin-bottom: 50px;
 }
+.join-preface-title {
+    font-size: 11px;
+    color: slategrey;
+}
 .join-form-box {
     margin-bottom: 10px;
+}
+.join-input-title {
+    margin-bottom: 8px;
 }
 .join-input-box {
     height: 52px;
     line-height: 53px;
     border: solid 1px #dadada;
     padding: 0 10px;
-}
-.border-yellowgreen {
-    border: 2px solid yellowgreen;
 }
 .join-input-box input {
     border: none;
@@ -43,9 +47,12 @@ html, body {
 .join-input-box select:focus {
     outline-color: #dadada
 }
-.join-input-title {
-    margin-bottom: 8px;
+
+/* if input-box in focus this class is add */
+.border-yellowgreen {
+    border: 2px solid yellowgreen;
 }
+
 #join-button-box {
     display: block;
     margin: 40px 0;
@@ -65,9 +72,9 @@ html, body {
     outline: unset;
 }
 
-#join-button-cancle {
-    float: right;
-}
 #join-button-submit {
     float: left;
+}
+#join-button-cancle {
+    float: right;
 }

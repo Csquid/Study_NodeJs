@@ -20,7 +20,7 @@ router.post('/form', function(req, res) {
     res.render('email.ejs', {'email': req.body.email});
 });
 
-router.post("/ajax", function(req, res){
+router.post("/ajax", function(req, res) {
     let email = req.body.email;
 
     let responseData = {
@@ -35,8 +35,6 @@ router.post("/ajax", function(req, res){
         if(rows[0]) {
             responseData.result = 'ok';
             responseData.detail.data.name = rows[0].name;
-            console.log(rows[0].name);
-            console.log();
         } else {
             responseData.result = 'none';
             responseData.detail.data.name = "";

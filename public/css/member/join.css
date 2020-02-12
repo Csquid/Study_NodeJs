@@ -1,0 +1,73 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+#container {
+    width: 460px;
+    height: 100%;
+    margin: 80px auto;
+}
+#node-icon-img {
+    width: 100%;
+    margin-bottom: 50px;
+}
+.join-form-box {
+    margin-bottom: 10px;
+}
+.join-input-box {
+    height: 52px;
+    line-height: 53px;
+    border: solid 1px #dadada;
+    padding: 0 10px;
+}
+.border-yellowgreen {
+    border: 2px solid yellowgreen;
+}
+.join-input-box input {
+    border: none;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+}
+.join-input-box input:focus {
+    outline: none;
+}
+.join-input-box select {
+    font-size: 20px;
+    padding: 5px;
+    width: 100%;
+    border: unset;
+}
+.join-input-box select:focus {
+    outline-color: #dadada
+}
+.join-input-title {
+    margin-bottom: 8px;
+}
+#join-button-box {
+    display: block;
+    margin: 40px 0;
+    overflow: hidden;
+}
+.join-button {
+    width: 45%;
+    height: 54px;
+    background-color: #f8f9fa;
+    border: 1px solid #dadada;
+}
+.join-button:hover {
+    background-color: #dadada;
+    cursor: pointer;
+}
+.join-button:focus {
+    outline: unset;
+}
+
+#join-button-cancle {
+    float: right;
+}
+#join-button-submit {
+    float: left;
+}

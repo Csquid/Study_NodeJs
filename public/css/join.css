@@ -10,8 +10,14 @@ html, body {
 }
 #node-icon-img {
     width: 100%;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
+#join-error-message {
+    /* margin: 15px 0; */
+    font-size: 11px;
+    color: red;
+}
+/* preface: 머리말 */
 .join-preface-title {
     font-size: 11px;
     color: slategrey;

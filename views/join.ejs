@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" href="/css/join.css">
+</head>
+
+<body>
+    <div id="container">
+        <img id="node-icon-img" src="/img/nodejs-icon.png">
+        <form action="/member/join" method="post" autocomplete="off">
+            
+            <p id="join-error-message">
+                <%= message %> 
+            </p>
+            <p class="join-preface-title">📌: 무조건 적어야 합니다.</p>
+            <!-- id -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    📌 id
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-id" name="id" maxlength="20">
+                </div>
+            </div>
+
+            <!-- password 1 -->
+            <div class="join-form-box ">
+                <h2 class="join-input-title">
+                    📌 Password
+                </h2>
+                <div class="join-input-box">
+                    <input type="password" id="join-pw-1" name="pw_1" maxlength="20">
+                </div>
+            </div>
+
+            <!-- password 2 -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    📌 Password Confirm
+                </h2>
+                <div class="join-input-box">
+                    <input type="password" id="join-pw-2" name="pw_2" maxlength="20">
+                </div>
+            </div>
+
+            <!-- name -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Name
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-name" name="name">
+                </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Email
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-email" name="email">
+                </div>
+            </div>
+            
+            <!-- address -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Address
+                </h2>
+                <div class="join-input-box">
+                    <input type="text" id="join-address" name="address">
+                </div>
+            </div>
+            
+            <!-- gender -->
+            <div class="join-form-box">
+                <h2 class="join-input-title">
+                    Gender
+                </h2>
+                <div class="join-input-box">
+                    <select name="gender" id="join-gender">
+                        <option value="gender">gender</option>
+                        <option value="man">man</option>
+                        <option value="woman">woman</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- join-button -->
+            <div id="join-button-box">
+                <!-- Sign up -->
+                <button type="submit" class="join-button" id="join-button-submit"> Sign Up </button>
+                <!-- Cancle -->
+                <button type="button" class="join-button" id="join-button-cancle"> Cancle </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let joinInputBoxElements = document.querySelectorAll('.join-input-box input, select');
+
+        Object.keys(joinInputBoxElements).forEach(function(item) {
+            joinInputBoxElements[item].addEventListener('focus', function(e) {
+                e.target.parentNode.classList.add("border-yellowgreen");
+            });
+
+            joinInputBoxElements[item].addEventListener('focusout', e => {
+                e.target.parentNode.classList.remove("border-yellowgreen");
+            });
+        });
+    </script>
+</body>
+</html>

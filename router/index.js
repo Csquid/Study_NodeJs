@@ -14,7 +14,7 @@ router.use('/member', member);
 router.use('/search', search);
 
 router.get('/', function(req, res) {
-    console.log("indexjs / path loaded");
+    // console.log("indexjs / path loaded");
     res.sendFile(path.join(__dirname, "../public/main.html"));
 });
 

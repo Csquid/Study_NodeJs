@@ -8,7 +8,7 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
-    user: '',
+    user: 'lake0019',
     password: '1234',
     database: 'ns_db'
 }) ;
@@ -36,7 +36,7 @@ router.post('/join', function(req, res) {
 
         console.log("ok insert db ", results);
     });
-    
+
     // console.log(reqDataObject);
 });
 module.exports = router;

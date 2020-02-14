@@ -65,7 +65,7 @@ router.get('/login', function (req, res) {
     }
 
     /* ejs path: /views/ */
-    res.render('./member/join.ejs', { 'message': msg });
+    res.render('./member/login.ejs', { 'message': msg });
 });
 
 /* 차후에 login부분에서 쓰면 될 것 같음 */
@@ -93,10 +93,12 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true
 }));
 
+/*
 router.get('/login', function (req, res) {
-    /* ejs path: /views/ */
+    //ejs path: /views/ 
     res.render('./member/login.ejs');
 })
+*/
 /*
 router.post('/join', function(req, res) {
     const body = req.body;

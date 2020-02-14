@@ -39,10 +39,9 @@
                     </div>
                 </div>
 
-
                 <!-- member-button -->
                 <div id="member-button-box">
-                    <button type="button" class="member-button login-button" id="login-button-submit">Login</button>
+                    <button type="button" class="member-button login-button ajaxsend" id="login-button-submit">Login</button>
                     
                     <!-- Move Page Sign up -->
                     <button type="button" class="member-button" id="member-button-sign-up" onclick="movePage('/member/join')"> Sign Up </button>
@@ -56,13 +55,36 @@
     <script>
         document.querySelector('.ajaxsend').addEventListener('click', function() {
             const login_id = document.getElementsByName('id')[0].value;
-            const login_pw = documnet.getElementsByName('pw')[0].value;
+            const login_pw = document.getElementsByName('pw')[0].value;
             
             const sendData = {
                 'id': login_id,
                 'pw': login_pw
             }
-        })
+
+            sendAjax('http://localhost:3000/member/login', sendData);
+        });
+    
+        function sendAjax(url, data) {
+            data = JSON.stringify(data);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-Type', "application/json");
+            xhr.send(data);
+            
+            xhr.addEventListener('load', function() {
+                const resultDivElement = document.querySelector(".result");
+                let result = JSON.parse(xhr.responseText);
+                console.log(result);
+
+                if(result.result !== "ok") {
+                    resultDivElement.innerHTML = "your email is not found"
+                } else {
+                    resultDivElement.innerHTML = result.detail.data.name;
+                }
+            });
+        }
     </script>
 </body>
 

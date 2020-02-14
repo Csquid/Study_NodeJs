@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" href="/css/member/common.css">
+    <link rel="stylesheet" href="/css/member/join.css">
+    <link rel="stylesheet" href="/css/member/login.css">
+    <script src="/js/common.js"></script>
+    <script src="/js/member/common.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- vertical-alignment: 수직 정렬 -->
+        <div id="vertical-alignment">
+            <img id="node-icon-img" src="/img/nodejs-icon.png">
+            <form action="/member/join" method="post" autocomplete="off">
+
+                <!-- id -->
+                <div class="member-form-box">
+                    <h2 class="member-input-title">
+                        📌 id
+                    </h2>
+                    <div class="member-input-box">
+                        <input type="text" id="login-id" name="id" maxlength="20">
+                    </div>
+                </div>
+    
+                <!-- password 1 -->
+                <div class="member-form-box ">
+                    <h2 class="member-input-title">
+                        📌 Password
+                    </h2>
+                    <div class="member-input-box">
+                        <input type="password" id="login-pw" name="pw" maxlength="20">
+                    </div>
+                </div>
+
+
+                <!-- member-button -->
+                <div id="member-button-box">
+                    <button type="button" class="member-button login-button" id="login-button-submit">Login</button>
+                    
+                    <!-- Move Page Sign up -->
+                    <button type="button" class="member-button" id="member-button-sign-up" onclick="movePage('/member/join')"> Sign Up </button>
+                    <!-- Move Page Index -->
+                    <button type="button" class="member-button" id="member-button-cancle" onclick="movePage('back')"> Cancle </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.ajaxsend').addEventListener('click', function() {
+            const login_id = document.getElementsByName('id')[0].value;
+            const login_pw = documnet.getElementsByName('pw')[0].value;
+            
+            const sendData = {
+                'id': login_id,
+                'pw': login_pw
+            }
+        })
+    </script>
+</body>
+
+</html>

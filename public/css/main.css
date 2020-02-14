@@ -22,12 +22,14 @@ html, body {
     border-bottom: 2px solid yellowgreen;
 }
 #navigation a {
+    color: #303030;
     font-size: 13px;
     font-weight: 700;
-    transition: all 1.2s ease;
+    /* transition: all 1.2s ease; */
 }
 #navigation a:hover {
     color: yellowgreen;
+    transition: all .5s ease;
 }
 #nav-flex {
     display: flex;
@@ -58,6 +60,28 @@ a:visited {
     border-right: 1px solid yellowgreen;
 }
 #content #sidebar #member-box {
-    height: 200px;
+    /* height: 100%; */
     border-bottom: 1px solid yellowgreen;
+    padding: 20px;
+}
+
+#login-button-box {
+    display: block;
+    /* padding-top: 20px; */
+    overflow: hidden;
+}
+.login-button {
+    width: 100%;
+    height: 54px;
+    background-color: #f8f9fa;
+    border: 1px solid #dadada;
+    font-size: 20px;
+}
+.login-button:hover {
+    background-color: #dadada;
+    cursor: pointer;
+    transition: all .7s ease;
+}
+.login-button:focus {
+    outline: unset;
 }

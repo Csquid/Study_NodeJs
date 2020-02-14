@@ -98,17 +98,6 @@
     </div>
 
     <script>
-        let joinInputBoxElements = document.querySelectorAll('.join-input-box input, select');
-
-        Object.keys(joinInputBoxElements).forEach(function(item) {
-            joinInputBoxElements[item].addEventListener('focus', function(e) {
-                e.target.parentNode.classList.add("border-yellowgreen");
-            });
-
-            joinInputBoxElements[item].addEventListener('focusout', e => {
-                e.target.parentNode.classList.remove("border-yellowgreen");
-            });
-        });
     </script>
 </body>
 </html>

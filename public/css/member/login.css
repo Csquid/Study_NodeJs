@@ -1,0 +1,13 @@
+#container {
+    display: table;
+    margin: 0 auto;
+}
+#vertical-alignment {
+    display: table-cell;
+    vertical-align: middle;
+}
+.login-button {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}

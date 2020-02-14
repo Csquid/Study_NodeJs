@@ -3,84 +3,73 @@ html, body {
     width: 100%;
     margin: 0;
 }
+
 #container {
     width: 460px;
     height: 100%;
-    margin: 80px auto;
 }
+
 #node-icon-img {
     width: 100%;
-    /* margin-bottom: 50px; */
 }
-#join-error-message {
-    /* margin: 15px 0; */
-    font-size: 11px;
-    color: red;
-}
-/* preface: 머리말 */
-.join-preface-title {
-    font-size: 11px;
-    color: slategrey;
-}
-.join-form-box {
+
+.member-form-box {
     margin-bottom: 10px;
 }
-.join-input-title {
+.member-input-title {
     margin-bottom: 8px;
 }
-.join-input-box {
+.member-input-box {
     height: 52px;
     line-height: 53px;
     border: solid 1px #dadada;
     padding: 0 10px;
 }
-.join-input-box input {
+.member-input-box input {
     border: none;
     width: 100%;
     height: 30px;
     line-height: 30px;
     font-size: 20px;
 }
-.join-input-box input:focus {
+.member-input-box input:focus {
     outline: none;
 }
-.join-input-box select {
+.member-input-box select {
     font-size: 20px;
     padding: 5px;
     width: 100%;
     border: unset;
 }
-.join-input-box select:focus {
+.member-input-box select:focus {
     outline-color: #dadada
 }
 
-/* if input-box in focus this class is add */
-.border-yellowgreen {
+/* if member-input-box in focus this class is add */
+.member-input-box.border-yellowgreen {
     border: 2px solid yellowgreen;
 }
 
-#join-button-box {
+#member-button-box {
     display: block;
     margin: 40px 0;
     overflow: hidden;
 }
-.join-button {
+.member-button {
     width: 45%;
     height: 54px;
     background-color: #f8f9fa;
     border: 1px solid #dadada;
 }
-.join-button:hover {
+.member-button:hover {
     background-color: #dadada;
     cursor: pointer;
+    transition: all .7s ease;
 }
-.join-button:focus {
+.member-button:focus {
     outline: unset;
 }
 
-#join-button-submit {
-    float: left;
-}
-#join-button-cancle {
+#member-button-cancle {
     float: right;
 }

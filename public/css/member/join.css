@@ -1,0 +1,16 @@
+#container {
+    margin: 80px auto;
+}
+#join-error-message {
+    /* margin: 15px 0; */
+    font-size: 11px;
+    color: red;
+}
+/* preface: 머리말 */
+.join-preface-title {
+    font-size: 11px;
+    color: slategrey;
+}
+#member-button-submit {
+    float: left;
+}

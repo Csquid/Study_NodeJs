@@ -2,18 +2,10 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const path = require('path');
-const mysql = require("mysql");
+const connectionMysql = require('../public/js/mysql.js');
 
 /* DataBase Setting */
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'lake0019',
-    password: '1234',
-    database: 'ns_db'
-}) ;
-
-connection.connect();
+connectionMysql.connect();
 
 /* Router !! */
 router.post('/form', function(req, res) {

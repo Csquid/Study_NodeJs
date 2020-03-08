@@ -65,23 +65,27 @@ a:visited {
     padding: 20px;
 }
 
-#login-button-box {
+.login-before .login-button-box,
+.login-after .logout-button-box {
     display: block;
     /* padding-top: 20px; */
     overflow: hidden;
 }
-.login-button {
+.login-button, .logout-button {
     width: 100%;
     height: 54px;
     background-color: #f8f9fa;
     border: 1px solid #dadada;
     font-size: 20px;
 }
-.login-button:hover {
+.login-button:hover, .logout-button:hover {
     background-color: #dadada;
     cursor: pointer;
     transition: all .7s ease;
 }
-.login-button:focus {
+.login-button:focus, .logout-button:focus {
     outline: unset;
+}
+.login-after .information .user-id {
+    margin: 0 0 10px;
 }

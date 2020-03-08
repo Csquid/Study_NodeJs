@@ -14,8 +14,20 @@ router.use('/member', member);
 router.use('/search', search);
 
 router.get('/', function(req, res) {
-    // console.log("indexjs / path loaded");
-    res.sendFile(path.join(__dirname, "../public/main.html"));
+    
+    console.log("indexjs / path loaded");
+    console.log(req.session);
+    // res.sendFile(path.join(__dirname, "../public/main.html"));
+    if(req.session.passport) {
+        res.render('./main.ejs', {
+            'user': req.session.passport.user
+        });
+    } else {
+        res.render('./main.ejs', {
+            'user': null
+        });
+    }
+    
 });
 
 module.exports = router;

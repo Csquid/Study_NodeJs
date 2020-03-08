@@ -1,34 +1,36 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
-const path = require('path');
-const mysql = require("mysql");
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const connectionMysql = require('../public/js/mysql.js');
 
-/* DataBase Setting */
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'lake0019',
-    password: '1234',
-    database: 'ns_db'
+const connection = connectionMysql.connect();
+
+const register = require('./member/register');
+const login = require('./member/login');
+const logout = require('./member/logout');
+
+router.use('/register', register);
+router.use('/login', login);
+router.use('/logout', logout);
+
+router.get('/register', function(req, res) {
+    res.render('./member/join.ejs', {'message': msg})
 });
 
-connection.connect();
+// router.get('/join', function (req, res) {
+//     // res.sendFile(path.join(__dirname, '../public/join.html'));
+//     let msg;
+//     const errorMsg = req.flash('error');
 
-router.get('/join', function (req, res) {
-    // res.sendFile(path.join(__dirname, '../public/join.html'));
-    let msg;
-    const errorMsg = req.flash('error');
+//     if (errorMsg) {
+//         msg = errorMsg;
+//     }
 
-    if (errorMsg) {
-        msg = errorMsg;
-    }
-
-    /* ejs path: /views/ */
-    res.render('./member/join.ejs', { 'message': msg });
-});
+//     /* ejs path: /views/ */
+//     res.render('./member/join.ejs', { 'message': msg });
+// });
 
 /* 차후에 login부분에서 쓰면 될 것 같음 */
 passport.use('local-join', new LocalStrategy({
@@ -55,50 +57,7 @@ router.post('/join', passport.authenticate('local-join', {
     failureFlash: true
 }));
 
-router.get('/login', function (req, res) {
-    // res.sendFile(path.join(__dirname, '../public/join.html'));
-    let msg;
-    const errorMsg = req.flash('error');
 
-    if (errorMsg) {
-        msg = errorMsg;
-    }
-
-    /* ejs path: /views/ */
-    res.render('./member/login.ejs', { 'message': msg });
-});
-
-/* 차후에 login부분에서 쓰면 될 것 같음 */
-passport.use('local-login', new LocalStrategy({
-    usernameField: 'id',
-    passwordField: 'pw',
-    passReqToCallback: true
-}, function (req, id, pw, done) {
-    const query = connection.query('select * from member where id=?', [id], function (err, rows) {
-        if (err) return done(err);
-
-        if (rows.length) {
-            console.log('existed user');
-            return done(null, false, { message: 'your email is already used' });
-        } else {
-
-        }
-    });
-}
-));
-
-router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/',
-    failureRedirect: '/member/login',
-    failureFlash: true
-}));
-
-/*
-router.get('/login', function (req, res) {
-    //ejs path: /views/ 
-    res.render('./member/login.ejs');
-})
-*/
 /*
 router.post('/join', function(req, res) {
     const body = req.body;

@@ -5,7 +5,8 @@ const path = require('path');
 
 router.get('/', function(req, res) {
     console.log("main.js");
-    res.sendFile(path.join(__dirname, "../../public/main.html"));
+    res.sendFile(path.join(__dirname, "../public/main.html"));
+    console.log("break");
 });
 
 module.exports = router;

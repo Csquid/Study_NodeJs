@@ -17,6 +17,11 @@
         <!-- vertical-alignment: 수직 정렬 -->
         <div id="vertical-alignment">
             <img id="node-icon-img" src="/img/nodejs-icon.png">
+            <div class="err-msg">
+                <p class="result">
+                    <%= message %>
+                </p>
+            </div>
             <form action="/member/join" method="post" autocomplete="off">
 
                 <!-- id -->
@@ -74,14 +79,17 @@
             xhr.send(data);
             
             xhr.addEventListener('load', function() {
+                /* 로그인 결과를 출력 할려고하는 엘리먼트 */
                 const resultDivElement = document.querySelector(".result");
                 let result = JSON.parse(xhr.responseText);
+
                 console.log(result);
 
-                if(result.result !== "ok") {
-                    resultDivElement.innerHTML = "your email is not found"
+                if(!result.signal) {
+                    resultDivElement.innerHTML = result.err;
                 } else {
-                    resultDivElement.innerHTML = result.detail.data.name;
+                    resultDivElement.innerHTML = 'Welcome ' + result.data.user.user_id + '.';
+                    location.href = '/';
                 }
             });
         }

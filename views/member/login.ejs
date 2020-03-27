@@ -49,7 +49,7 @@
                     <button type="button" class="member-button login-button ajaxsend" id="login-button-submit">Login</button>
                     
                     <!-- Move Page Sign up -->
-                    <button type="button" class="member-button" id="member-button-sign-up" onclick="movePage('/member/join')"> Sign Up </button>
+                    <button type="button" class="member-button" id="member-button-sign-up" onclick="movePage('/member/register')"> Sign Up </button>
                     <!-- Move Page Index -->
                     <button type="button" class="member-button" id="member-button-cancle" onclick="movePage('back')"> Cancle </button>
                 </div>
@@ -74,6 +74,7 @@
             data = JSON.stringify(data);
 
             let xhr = new XMLHttpRequest();
+            
             xhr.open('POST', url);
             xhr.setRequestHeader('Content-Type', "application/json");
             xhr.send(data);
@@ -88,7 +89,7 @@
                 if(!result.signal) {
                     resultDivElement.innerHTML = result.err;
                 } else {
-                    resultDivElement.innerHTML = 'Welcome ' + result.data.user.user_id + '.';
+                    // resultDivElement.innerHTML = 'Welcome ' + result.data.user.user_id + '.';
                     location.href = '/';
                 }
             });

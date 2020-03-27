@@ -8,7 +8,7 @@ const connectionMysql = require('../../public/js/mysql.js');
 const connection = connectionMysql.connect();
 
 router.get('/', function (req, res) {
-    // res.sendFile(path.join(__dirname, '../public/join.html'));
+    /* res.sendFile(path.join(__dirname, '../public/join.html')); */
     let msg;
     const errorMsg = req.flash('error');
 

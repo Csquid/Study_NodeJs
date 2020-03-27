@@ -13,10 +13,7 @@ const flash = require('connect-flash');
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
-    // store: new FileStore({
-    //     path: "./sessions/"
-    // })
+    saveUninitialized: true
 }));
 
 app.use(function(err, req, res, next) {

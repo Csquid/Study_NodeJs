@@ -14,3 +14,7 @@
 #member-button-submit {
     float: left;
 }
+.register-error-message {
+    margin: 10px 0 0;
+    color: red;
+}

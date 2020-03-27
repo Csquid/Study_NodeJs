@@ -13,9 +13,6 @@ html, body {
     width: 100%;
 }
 
-.member-form-box {
-    margin-bottom: 10px;
-}
 .member-input-title {
     margin-bottom: 8px;
 }
@@ -72,4 +69,8 @@ html, body {
 
 #member-button-cancle {
     float: right;
+}
+
+.hidden {
+    display: none;
 }

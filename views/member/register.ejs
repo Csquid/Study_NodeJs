@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="/css/member/common.css">
+    <link rel="stylesheet" href="/css/member/register.css">
+    <script src="/js/common.js"></script>
+    <script src="/js/member/common.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <img id="node-icon-img" src="/img/nodejs-icon.png">
+        <p id="register-error-message">
+            <%= message %>
+        </p>
+        <p class="register-preface-title">📌: 무조건 적어야 합니다.</p>
+
+        <!-- id -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                📌 id
+            </h2>
+            <div class="member-input-box">
+                <input type="text" id="register-id" name="id" maxlength="20">
+            </div>
+            <p id="err-empty-id" class="hidden register-error-message">
+                You can't leave this empty.
+            </p>
+            <p id="err-overlap-id" class="hidden register-error-message">
+                Username is already taken.
+            </p>
+        </div>
+
+        <!-- password 1 -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                📌 Password
+            </h2>
+            <div class="member-input-box">
+                <input type="password" id="register-pw-1" name="pw_1" maxlength="20">
+            </div>
+            <p id="err-empty-password-1" class="hidden register-error-message">
+                You can't leave this empty.
+            </p>
+        </div>
+
+        <!-- password 2 -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                📌 Password Confirm
+            </h2>
+            <div class="member-input-box">
+                <input type="password" id="register-pw-2" name="pw_2" maxlength="20">
+            </div>
+            <p id="err-empty-password-2" class="hidden register-error-message">
+                You can't leave this empty.
+            </p>
+        </div>
+
+        <!-- name -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                Name
+            </h2>
+            <div class="member-input-box">
+                <input type="text" id="register-name" name="name">
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                Email
+            </h2>
+            <div class="member-input-box">
+                <input type="text" id="register-email" name="email">
+            </div>
+        </div>
+
+        <!-- address -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                Address
+            </h2>
+            <div class="member-input-box">
+                <input type="text" id="register-address" name="address">
+            </div>
+        </div>
+
+        <!-- gender -->
+        <div class="member-form-box">
+            <h2 class="member-input-title">
+                Gender
+            </h2>
+            <div class="member-input-box">
+                <select name="gender" id="register-gender">
+                    <option value="gender">gender</option>
+                    <option value="man">man</option>
+                    <option value="woman">woman</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- register-button -->
+        <div id="member-button-box">
+            <!-- Sign up -->
+            <button type="submit" class="member-button" id="member-button-submit"> Sign Up </button>
+            <!-- Cancle -->
+            <button type="button" class="member-button" id="member-button-cancle" onclick="movePage('back')"> Cancle
+            </button>
+        </div>
+    </div>
+
+    <script src="/js/member/register.js"></script>
+</body>
+
+</html>

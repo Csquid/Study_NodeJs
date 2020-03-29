@@ -25,13 +25,19 @@
                 📌 id
             </h2>
             <div class="member-input-box">
-                <input type="text" id="register-id" name="id" maxlength="20">
+                <input type="text" id="register-id" name="id" maxlength="20" autocomplete="off">
             </div>
+            <p id="welcome-not-overlap-id", class="hidden welcome">
+                Welcome!
+            </p>
             <p id="err-empty-id" class="hidden register-error-message">
                 You can't leave this empty.
             </p>
             <p id="err-overlap-id" class="hidden register-error-message">
                 Username is already taken.
+            </p>
+            <p id="err-regex-id" class="hidden register-error-message">
+                5~20 characters consisting of lowercase letters(a-z), numbers, or special characters (_, -)
             </p>
         </div>
 
@@ -43,8 +49,8 @@
             <div class="member-input-box">
                 <input type="password" id="register-pw-1" name="pw_1" maxlength="20">
             </div>
-            <p id="err-empty-password-1" class="hidden register-error-message">
-                You can't leave this empty.
+            <p id="err-empty-pw1" class="hidden register-error-message">
+                You can't leave this empty. 
             </p>
         </div>
 
@@ -56,7 +62,7 @@
             <div class="member-input-box">
                 <input type="password" id="register-pw-2" name="pw_2" maxlength="20">
             </div>
-            <p id="err-empty-password-2" class="hidden register-error-message">
+            <p id="err-empty-pw2" class="hidden register-error-message">
                 You can't leave this empty.
             </p>
         </div>
@@ -77,8 +83,17 @@
                 Email
             </h2>
             <div class="member-input-box">
-                <input type="text" id="register-email" name="email">
+                <input type="text" id="register-email" name="email" autocomplete="off">
             </div>
+            <p id="welcome-not-overlap-email" class="hidden welcome">
+                Welcome!
+            </p>
+            <p id="err-overlap-email" class="hidden register-error-message">
+                Email is already taken.
+            </p>
+            <p id="err-regex-email" class="hidden register-error-message">
+                email format is wrong
+            </p>
         </div>
 
         <!-- address -->

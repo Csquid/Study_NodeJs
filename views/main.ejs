@@ -47,8 +47,7 @@
     <script>
         if(document.querySelector('.ajaxsend') !== null) {
             document.querySelector('.ajaxsend').addEventListener('click', function() {
-                console.log("break");
-                sendAjax('http://localhost:3000/member/logout');
+                sendAjax('member/logout');
             });
         }
         

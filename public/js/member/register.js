@@ -1,4 +1,4 @@
-let registerObject = {
+const registerObject = {
     "id": document.querySelector('#register-id'),
     "pw1": document.querySelector('#register-pw-1'),
     "pw2": document.querySelector('#register-pw-2'),
@@ -7,9 +7,8 @@ let registerObject = {
     "address": document.querySelector('#register-address'),
     "gender": document.querySelector('#register-gender')
 }
-
-let errRegMsg = "8~16 characters consisting of letters(A-Z, a-z), numbers, or special characters.";
-let errMsgStrings = {
+const errRegMsg = "8~16 characters consisting of letters(A-Z, a-z), numbers, or special characters.";
+const errMsgStrings = {
     null: "You can't leave this empty.",
     "overlap-id": "Username is already taken.",
     "overlap-email": "Email is already taken.",
@@ -20,7 +19,8 @@ let errMsgStrings = {
     "match-pw": "These passwords don’t match."
 }
 
-let notNullPropArray = ["id", "pw1", "pw2", "email"];
+const registerSubmitButton = document.querySelector("#member-button-submit");
+const notNullPropArray = ["id", "pw1", "pw2", "email"];
 
 const regPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
 const regObject = {
@@ -35,8 +35,6 @@ function showAll() {
         console.log(prop, registerObject[prop]);
     }
 }
-
-let welcomeCheck;
 
 for (let prop in registerObject) {
     registerObject[prop].addEventListener('focusout', function (e) {
@@ -79,28 +77,23 @@ for (let prop in registerObject) {
             checkData[prop] = elementData;
 
             if(prop === "id" || prop === "email")
-                sendAjax('http://localhost:9000/member/overlap/', prop, checkData);
+                overlapCheckAjax('http://localhost:9000/member/overlap/', prop, checkData);
         }
-       
     })
 }
 
-function sendAjax(url, prop, data) {
+function overlapCheckAjax(url, prop, data) {
     data = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
 
     url = url + prop;
 
-    console.log("url: " + url);
-    console.log("data: " + data);
-
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', "application/json");
     xhr.send(data);
 
     xhr.addEventListener('load', function () {
-        /* 로그인 결과를 출력 할려고하는 엘리먼트 */
         let result = JSON.parse(xhr.responseText);
 
         console.log(result);
@@ -134,4 +127,38 @@ function hideWelcome(prop) {
     if(prop !== 'pw1' && prop !== 'pw2') {
         document.querySelector('#welcome-not-overlap-' + prop).classList.add('hidden');
     }
+}
+
+registerSubmitButton.addEventListener("click", function(e) {
+    const sendData = {
+        id: registerObject.id.value,
+        pw: registerObject.pw2.value,
+        name: registerObject.name.value,
+        email: registerObject.email.value,
+        address: registerObject.address.value,
+        gender: registerObject.gender.value
+    };
+
+    const url = "/member/register";
+
+    sendRegisterAjax(url, sendData);
+});
+
+function sendRegisterAjax(url, data) {
+    data = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', "application/json");
+    xhr.send(data);
+
+    xhr.addEventListener('load', function () {
+        let result = JSON.parse(xhr.responseText);
+
+        console.log(result);
+        if(result.signal) {
+            location.href = "/";
+        } else { }
+    });    
 }

@@ -5,6 +5,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const connectionMysql = require('../../public/js/mysql.js');
 
+const connection = connectionMysql.connect();
+
 router.get('/', function (req, res) {
     let msg;
     const errorMsg = req.flash('error');
@@ -20,9 +22,11 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     const body = req.body;
 
+    console.log(body);
+
     const reqDataObject = {
         id: body.id,
-        pw: body['pw-1'],
+        pw: body.pw,
         name: body.name,
         email: body.email,
         address: body.address,
@@ -34,6 +38,13 @@ router.post('/', function (req, res) {
 
         console.log("ok insert db ", results);
     });
+
+    let sendData = {
+        "signal": true,
+    }
+
+    res.json(sendData);
+    
 
     // console.log(reqDataObject);
 });

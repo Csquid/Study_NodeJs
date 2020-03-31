@@ -8,9 +8,27 @@ let registerObject = {
     "gender": document.querySelector('#register-gender')
 }
 
+let errRegMsg = "8~16 characters consisting of letters(A-Z, a-z), numbers, or special characters.";
+let errMsgStrings = {
+    null: "You can't leave this empty.",
+    "overlap-id": "Username is already taken.",
+    "overlap-email": "Email is already taken.",
+    "regex-id": "5~20 characters consisting of lowercase letters(a-z), numbers, or special characters (_, -)",
+    "regex-pw1": errRegMsg,
+    "regex-pw2": errRegMsg,
+    "regex-email": "email format is wrong",
+    "match-pw": "These passwords don’t match."
+}
+
 let notNullPropArray = ["id", "pw1", "pw2", "email"];
-const regID = /^[a-z0-9][a-z0-9_\-]{4,19}$/;
-const regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+const regPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
+const regObject = {
+    id: /^[a-z0-9][a-z0-9_\-]{4,19}$/,
+    email: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+    pw1: regPW,
+    pw2: regPW
+}
 
 function showAll() {
     for (let prop in registerObject) {
@@ -22,59 +40,49 @@ let welcomeCheck;
 
 for (let prop in registerObject) {
     registerObject[prop].addEventListener('focusout', function (e) {
-        welcomeCheck = true;
-        console.log(prop);
         elementData = e.target.value
-        // console.log(prop);
 
-        if (notNullPropArray.find(element => element === prop)) {
+        if (document.querySelector('#err-' + prop)) {
+
             /* not null 부분이 비어있는 경우 */
-
-            if (elementData === '' && prop !== 'email') {
-                document.querySelector('#err-empty-' + prop).classList.remove('hidden');
-                welcomeCheck = false;
+            if (elementData === '') {
+                if (prop !== 'email') {
+                    showErrMsg(prop, errMsgStrings.null);
+                    hideWelcome(prop);
+                } else {
+                    hideErrMsg(prop);
+                }
                 return;
-            } else {
-                if(prop !== 'email')
-                    document.querySelector('#err-empty-' + prop).classList.add('hidden');
+            } else {    /* 비어있지 않은 경우 */
+                hideErrMsg(prop);
             }
 
-            if (elementData !== '') {
-                switch (prop) {
-                    /* id overlap check ajax */
-                    case "id":
-                        if(regID.test(elementData)) {
-                            /* 만약 정규식을 통과했다면 */
-                            document.querySelector('#err-regex-id').classList.add('hidden');
-                        } else {
-                            /* 만약 정규식을 통과하지 않았다면 */
-                            document.querySelector('#err-regex-id').classList.remove ('hidden');
-                            welcomeCheck = false;
-                            return;
-                        }
+            /* 정규식 통과하지 못한 경우 */
+            if (!regObject[prop].test(elementData)) {
+                showErrMsg(prop, errMsgStrings["regex-" + prop]);
+                hideWelcome(prop);
+                return
+            } else {    /* 정규식 통과한 경우 */
+                hideErrMsg(prop);
+            }
 
-                        welcomeCheck = true;
-                        sendAjax('http://localhost:9000/member/overlap/', prop, { id: elementData });
-                        break;
-                    case "email":
-                        /* register ajax */
-                        if(regEmail.test(elementData)) {
-                            /* 만약 정규식을 통과했다면 */
-                            document.querySelector('#err-regex-email').classList.add('hidden');
-                        } else {
-                            /* 만약 정규식을 통과하지 않았다면 */
-                            document.querySelector('#err-regex-email').classList.remove('hidden');
-                        }
-
-                        sendAjax('http://localhost:9000/member/overlap/', prop, { email: elementData });
-                        break;
-                    default:
-                        break;
+            if(prop === 'pw2') {
+                if(registerObject[prop].value !== registerObject.pw1.value) {
+                    showErrMsg(prop, errMsgStrings["match-pw"]);
+                    return;
+                } else {
+                    hideErrMsg(prop);
                 }
             }
 
+            let checkData = {};
+            checkData[prop] = elementData;
+
+            if(prop === "id" || prop === "email")
+                sendAjax('http://localhost:9000/member/overlap/', prop, checkData);
         }
-    })  
+       
+    })
 }
 
 function sendAjax(url, prop, data) {
@@ -96,54 +104,34 @@ function sendAjax(url, prop, data) {
         let result = JSON.parse(xhr.responseText);
 
         console.log(result);
-        switch (prop) {
-            case "id":
-                if (result.overlap) {
-                    /* 중복 되었을때 */
-                    document.querySelector('#err-overlap-id').classList.remove('hidden');
-                } else {
-                    /* 중복이 아닐때 */
-                    document.querySelector('#err-overlap-id').classList.add('hidden');
-                }
 
-                if(welcomeCheck)
-                    document.querySelector('#welcome-not-overlap-id').classList.remove('hidden');
-                else
-                    document.querySelector('#welcome-not-overlap-id').classList.add('hidden');
-                break;
-            case "email":
-                if (result.overlap) {
-                    /* 중복 되었을때 */
-                    document.querySelector('#err-overlap-email').classList.remove('hidden');
-                    document.querySelector('#welcome-not-overlap-email').classList.add('hidden');
-                } else {
-                    /* 중복이 아닐때 */
-                    document.querySelector('#err-overlap-email').classList.add('hidden');
-                    document.querySelector('#welcome-not-overlap-email').classList.remove('hidden');
-                }
-                break;
-            default:
-                break;
+        checkOverlap(prop, result.overlap);
+
+        function checkOverlap(prop, overlap) {
+            if (overlap) {   //true { 중복 o }
+                showErrMsg(prop, errMsgStrings["overlap-" + prop]);
+                hideWelcome(prop);
+            } else {        //false { 중복 x }
+                hideErrMsg(prop, errMsgStrings["overlap-" + prop]);
+                showWelcome(prop);
+            }
         }
-
-        // if(!result.signal) {
-        //     resultDivElement.innerHTML = result.err;
-        // } else {
-        //     // resultDivElement.innerHTML = 'Welcome ' + result.data.user.user_id + '.';
-        //     location.href = '/';
-        // }
     });
 }
 
-let registerID = function () {
-    return document.querySelector('#register-id').value;
+function showErrMsg(prop, msg) {
+    document.querySelector("#err-" + prop).innerHTML = msg;
+}
+function hideErrMsg(prop) {
+    document.querySelector("#err-" + prop).innerHTML = '';
 }
 
-document.querySelector('#register-pw-1').value
-document.querySelector('#register-id').addEventListener('focusout', function (e) {
-    // console.log('focus out');
-    // console.log(e.target.value);
+function showWelcome(prop) {
+    document.querySelector('#welcome-not-overlap-' + prop).classList.remove('hidden');
+}
 
-    // if()
-})
-
+function hideWelcome(prop) {
+    if(prop !== 'pw1' && prop !== 'pw2') {
+        document.querySelector('#welcome-not-overlap-' + prop).classList.add('hidden');
+    }
+}

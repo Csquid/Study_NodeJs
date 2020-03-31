@@ -21,7 +21,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(9000, function() {
-    console.log("start! express server on port 3000");
+    console.log("start! express server on port 9000");
 });
 
 app.use(express.static('public'));

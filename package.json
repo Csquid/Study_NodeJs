@@ -4,8 +4,8 @@
   "description": "none",
   "main": "app.js",
   "scripts": {
-    "test": "none",
-    "start": "nodemon app.js --ignore sessions/*"
+    "start": "pm2 start app",
+    "restart": "pm2 restart app"
   },
   "repository": {
     "type": "git",

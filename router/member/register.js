@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
         msg = errorMsg;
     }
 
-    //     /* ejs path: /views/ */
+    /* ejs path: /views/ */
     res.render('./member/register.ejs', { 'message': msg });
 });
 
